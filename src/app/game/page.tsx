@@ -149,7 +149,7 @@ const Game = () => {
   const wib1 = () => {
     setP1Wib(!p1Wib);
     setTimeout(() => {
-      if (p2Wib) {
+      if (p2Wib && !p1Wib) {
         setP1HP(p1HP - 10);
         setP2HP(p2HP - 10);
       }
@@ -159,7 +159,7 @@ const Game = () => {
   const wib2 = () => {
     setP2Wib(!p2Wib);
     setTimeout(() => {
-      if (p1Wib) {
+      if (p1Wib && !p2Wib) {
         setP1HP(p1HP - 10);
         setP2HP(p2HP - 10);
       }
