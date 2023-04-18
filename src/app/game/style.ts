@@ -40,7 +40,10 @@ export const BoxerWeapon = styled.div`
 `;
 
 export const Punch = styled.div`
-  width: 250px;
+  z-index: 1;
+  position: relative;
+  top: 100px;
+  width: 150px;
   height: 30px;
   background-color: gray;
   border-radius: 20px;
@@ -63,8 +66,10 @@ export const FlexBox = styled.div`
 `;
 
 export const Kick = styled.div`
+  z-index: 1;
   width: 40px;
-  height: 200px;
+  position: relative;
+  height: 20px;
   background-color: gray;
   border-radius: 20px;
   transition: ease-in-out 0.5s;
