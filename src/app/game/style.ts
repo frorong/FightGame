@@ -66,7 +66,6 @@ export const FlexBox = styled.div`
 `;
 
 export const Kick = styled.div`
-  /* transform: rotate(90deg); */
   z-index: 1;
   width: 40px;
   position: relative;

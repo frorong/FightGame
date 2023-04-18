@@ -102,8 +102,6 @@ const Game = () => {
   const [p2Kick, setP2Kick] = useState(false);
   const [p1Wib, setP1Wib] = useState(false);
   const [p2Wib, setP2Wib] = useState(false);
-  const [p1Cool, setP1Cool] = useState(false);
-  const [p2Cool, setP2Cool] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -119,7 +117,6 @@ const Game = () => {
       setP2Punch(false);
     }, 900);
   };
-
   const kick1 = () => {
     setP1Kick(true);
     setTimeout(() => {
@@ -140,20 +137,12 @@ const Game = () => {
   };
 
   const handleKeyPress = (e: any) => {
-    if (!p1Cool) {
-      if (e.key === 'q' || e.key === 'Q' || e.key === 'ㅂ') punch1();
-      if (e.key === 'w' || e.key === 'W' || e.key === 'ㅈ') kick1();
-      if (e.key === 'e' || e.key === 'E' || e.key === 'ㄷ') wib1();
-      setP1Cool(true);
-      setTimeout(() => setP1Cool(false), 1000);
-    }
-    if (!p2Cool) {
-      if (e.key === 'i' || e.key === 'I' || e.key === 'ㅑ') punch2();
-      if (e.key === 'o' || e.key === 'O' || e.key === 'ㅐ') kick2();
-      if (e.key === 'p' || e.key === 'P' || e.key === 'ㅔ') wib2();
-      setP2Cool(true);
-      setTimeout(() => setP2Cool(false), 1000);
-    }
+    if (e.key === 'q' || e.key === 'Q' || e.key === 'ㅂ') !p1Wib && punch1();
+    if (e.key === 'i' || e.key === 'I' || e.key === 'ㅑ') !p2Wib && punch2();
+    if (e.key === 'w' || e.key === 'W' || e.key === 'ㅈ') kick1();
+    if (e.key === 'o' || e.key === 'O' || e.key === 'ㅐ') kick2();
+    if (e.key === 'e' || e.key === 'E' || e.key === 'ㄷ') wib1();
+    if (e.key === 'p' || e.key === 'P' || e.key === 'ㅔ') wib2();
   };
   useEffect(() => {
     if (inputRef.current !== null) inputRef.current.focus();
