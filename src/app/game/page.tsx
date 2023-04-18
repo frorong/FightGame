@@ -102,11 +102,19 @@ const Game = () => {
   const [p2Kick, setP2Kick] = useState(false);
   const [p1Wib, setP1Wib] = useState(false);
   const [p2Wib, setP2Wib] = useState(false);
+  let p1Dodge = false;
+  let p2Dodge = false;
+
+  const [p1HP, setP1HP] = useState(500);
+  const [p2HP, setP2HP] = useState(500);
 
   const inputRef = useRef<HTMLInputElement>(null);
 
   const punch1 = () => {
     setP1Punch(true);
+    setTimeout(() => {
+      if (!p2Wib) setP2HP(p2HP - 10);
+    }, 500);
     setTimeout(() => {
       setP1Punch(false);
     }, 900);
@@ -114,11 +122,17 @@ const Game = () => {
   const punch2 = () => {
     setP2Punch(true);
     setTimeout(() => {
+      if (!p1Wib) setP1HP(p1HP - 10);
+    }, 500);
+    setTimeout(() => {
       setP2Punch(false);
     }, 900);
   };
   const kick1 = () => {
     setP1Kick(true);
+    setTimeout(() => {
+      if (p2Wib) setP2HP(p2HP - 10);
+    }, 500);
     setTimeout(() => {
       setP1Kick(false);
     }, 900);
@@ -126,14 +140,31 @@ const Game = () => {
   const kick2 = () => {
     setP2Kick(true);
     setTimeout(() => {
+      if (p1Wib) setP1HP(p1HP - 10);
+    }, 500);
+    setTimeout(() => {
       setP2Kick(false);
     }, 900);
   };
   const wib1 = () => {
     setP1Wib(!p1Wib);
+    setTimeout(() => {
+      if (p2Wib) {
+        setP1HP(p1HP - 10);
+        setP2HP(p2HP - 10);
+      }
+    }, 500);
+    p1Dodge = !p1Wib;
   };
   const wib2 = () => {
     setP2Wib(!p2Wib);
+    setTimeout(() => {
+      if (p1Wib) {
+        setP1HP(p1HP - 10);
+        setP2HP(p2HP - 10);
+      }
+    }, 500);
+    p2Dodge = !p2Wib;
   };
 
   const handleKeyPress = (e: any) => {
@@ -160,6 +191,10 @@ const Game = () => {
           height: 100vh;
         `}
       />
+      <S.HPs>
+        <h2>P1 : {p1HP}</h2>
+        <h2>P2 : {p2HP}</h2>
+      </S.HPs>
       <S.Cage>
         <S.Boxer>
           {p1Punch ? (
@@ -185,7 +220,7 @@ const Game = () => {
                 background-color: red;
               `}
             ></S.BoxerHead>
-            <S.BoxerBody></S.BoxerBody>
+            <S.BoxerBody />
           </div>
           <S.FlexBox>
             <S.BoxerReg />
@@ -217,7 +252,7 @@ const Game = () => {
                 background-color: blue;
               `}
             ></S.BoxerHead>
-            <S.BoxerBody></S.BoxerBody>
+            <S.BoxerBody />
           </div>
           <S.FlexBox>
             {p2Kick ? <P2K /> : <S.BoxerReg />}

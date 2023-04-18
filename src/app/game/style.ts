@@ -1,5 +1,11 @@
 import styled from '@emotion/styled';
 
+export const HPs = styled.div`
+  width: 800px;
+  display: flex;
+  justify-content: space-between;
+`;
+
 export const Cage = styled.div`
   width: 800px;
   height: 700px;
