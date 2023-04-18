@@ -66,10 +66,11 @@ export const FlexBox = styled.div`
 `;
 
 export const Kick = styled.div`
+  /* transform: rotate(90deg); */
   z-index: 1;
   width: 40px;
   position: relative;
-  height: 20px;
+  height: 40px;
   background-color: gray;
   border-radius: 20px;
   transition: ease-in-out 0.5s;
