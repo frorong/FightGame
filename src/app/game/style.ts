@@ -6,6 +6,10 @@ export const HPs = styled.div`
   justify-content: space-between;
 `;
 
+export const Num = styled.h1`
+  font-size: 40px;
+`;
+
 export const Cage = styled.div`
   width: 800px;
   height: 700px;

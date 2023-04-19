@@ -97,6 +97,8 @@ const P2K = () => {
 };
 
 const Game = () => {
+  let newNum = 60;
+  const [num, setNum] = useState<string | number>(3);
   const [p1Punch, setP1Punch] = useState(false);
   const [p2Punch, setP2Punch] = useState(false);
   const [p1Kick, setP1Kick] = useState(false);
@@ -179,7 +181,23 @@ const Game = () => {
     if (e.key === 'p' || e.key === 'P' || e.key === 'ㅔ') wib2();
   };
   useEffect(() => {
-    if (inputRef.current !== null) inputRef.current.focus();
+    setTimeout(() => {
+      setNum(2);
+    }, 1000);
+    setTimeout(() => {
+      setNum(1);
+    }, 2000);
+    setTimeout(() => {
+      setNum('Start!');
+      if (inputRef.current !== null) inputRef.current.focus();
+      setTimeout(() => {
+        setNum(60);
+        setInterval(() => {
+          newNum--;
+          setNum(newNum);
+        }, 1000);
+      }, 1500);
+    }, 3000);
   }, []);
   if (p2HP <= 0 || p1HP <= 0) {
     let winner: string;
@@ -188,8 +206,17 @@ const Game = () => {
     alert(`winner is ${winner}`);
     router.push('/end');
   }
+  if ((num as number) <= 0) {
+    let winner: string = '';
+    if (p1HP > p2HP) winner = 'Player1';
+    else if (p2HP > p1HP) winner = 'Player2';
+    else if (p2HP === p1HP) winner = '무승부!';
+    alert(`winner is ${winner}`);
+    router.push('/end');
+  }
   return (
     <Container>
+      <S.Num>{num}</S.Num>
       <input
         ref={inputRef}
         onKeyDown={handleKeyPress}
