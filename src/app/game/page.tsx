@@ -3,6 +3,7 @@ import { Container } from 'app/style';
 import * as S from './style';
 import { css } from '@emotion/react';
 import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 const P1P = () => {
   const [length, setLength] = useState(0);
@@ -105,8 +106,10 @@ const Game = () => {
   let p1Dodge = false;
   let p2Dodge = false;
 
-  const [p1HP, setP1HP] = useState(500);
-  const [p2HP, setP2HP] = useState(500);
+  const [p1HP, setP1HP] = useState(300);
+  const [p2HP, setP2HP] = useState(300);
+
+  const router = useRouter();
 
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -178,6 +181,13 @@ const Game = () => {
   useEffect(() => {
     if (inputRef.current !== null) inputRef.current.focus();
   }, []);
+  if (p2HP <= 0 || p1HP <= 0) {
+    let winner: string;
+    if (p2HP <= 0) winner = 'Player1';
+    else winner = 'Player2';
+    alert(`winner is ${winner}`);
+    router.push('/end');
+  }
   return (
     <Container>
       <input

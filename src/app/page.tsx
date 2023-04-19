@@ -6,7 +6,7 @@ import Link from 'next/link';
 export default function Home() {
   return (
     <S.Container>
-      <p>복싱 게임에 오신것을 환영합니다.</p>
+      <h2>복싱 게임에 오신것을 환영합니다.</h2>
       <Link href="info">게임 설명 보기</Link>
     </S.Container>
   );

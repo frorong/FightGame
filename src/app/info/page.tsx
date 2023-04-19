@@ -5,7 +5,7 @@ import Link from 'next/link';
 const Info = () => {
   return (
     <Container>
-      <p>게임 규칙</p>
+      <h2>게임 규칙</h2>
       <p>~~~~~~~~~~~~~~~~~~~~</p>
       <p>펀치 : P1 Q / P2 I</p>
       <p>숙이기 : P1 W / P2 O</p>
