@@ -1,10 +1,7 @@
 'use client';
 import './globals.css';
 import Head from 'next/head';
-import Image from 'next/image';
-import BackBoxer from 'img/BackBoxer.png';
 import { css } from '@emotion/react';
-import Glub from 'img/Glub.png';
 
 export default function RootLayout({
   children,
@@ -14,10 +11,10 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <title>GFC</title>
-      <Head>
-        <meta property="og:title" content="Every GSM" key="title" />
-        <link rel="icon" href={Glub} />
-      </Head>
+      <link
+        rel="icon"
+        href="https://i.esdrop.com/d/f/8XM3vYGLJd/MoBCviSrdX.png"
+      />
       <body
         css={css`
           background-size: contain;
