@@ -210,7 +210,10 @@ const Game = () => {
     let winner: string = '';
     if (p1HP > p2HP) winner = 'Player1';
     else if (p2HP > p1HP) winner = 'Player2';
-    else if (p2HP === p1HP) winner = '무승부!';
+    else if (p2HP === p1HP) {
+      alert(`무승부!`);
+      return;
+    }
     alert(`winner is ${winner}`);
     router.push('/end');
   }
