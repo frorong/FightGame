@@ -4,6 +4,10 @@ import * as S from './style';
 import { css } from '@emotion/react';
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import p1 from 'img/p1.png';
+import p2 from 'img/p2.png';
+
+import Image from 'next/image';
 
 const P1P = () => {
   const [length, setLength] = useState(0);
@@ -105,6 +109,8 @@ const Game = () => {
   const [p2Kick, setP2Kick] = useState(false);
   const [p1Wib, setP1Wib] = useState(false);
   const [p2Wib, setP2Wib] = useState(false);
+  const [is1Damage, set1IsDamage] = useState(false);
+  const [is2Damage, set2IsDamage] = useState(false);
   let p1Dodge = false;
   let p2Dodge = false;
 
@@ -118,37 +124,52 @@ const Game = () => {
   const punch1 = () => {
     setP1Punch(true);
     setTimeout(() => {
-      if (!p2Wib) setP2HP(p2HP - 10);
+      if (!p2Wib) {
+        setP2HP(p2HP - 10), set2IsDamage(true);
+      }
     }, 500);
     setTimeout(() => {
       setP1Punch(false);
+      set2IsDamage(false);
     }, 900);
   };
   const punch2 = () => {
     setP2Punch(true);
     setTimeout(() => {
-      if (!p1Wib) setP1HP(p1HP - 10);
+      if (!p1Wib) {
+        setP1HP(p1HP - 10);
+        set1IsDamage(true);
+      }
     }, 500);
     setTimeout(() => {
       setP2Punch(false);
+      set1IsDamage(false);
     }, 900);
   };
   const kick1 = () => {
     setP1Kick(true);
     setTimeout(() => {
-      if (p2Wib) setP2HP(p2HP - 10);
+      if (p2Wib) {
+        setP2HP(p2HP - 10);
+        set2IsDamage(true);
+      }
     }, 500);
     setTimeout(() => {
       setP1Kick(false);
+      set2IsDamage(false);
     }, 900);
   };
   const kick2 = () => {
     setP2Kick(true);
     setTimeout(() => {
-      if (p1Wib) setP1HP(p1HP - 10);
+      if (p1Wib) {
+        setP1HP(p1HP - 10);
+        set1IsDamage(true);
+      }
     }, 500);
     setTimeout(() => {
       setP2Kick(false);
+      set1IsDamage(false);
     }, 900);
   };
   const wib1 = () => {
@@ -255,11 +276,24 @@ const Game = () => {
               'transform: rotate(70deg);position: relative;top: 80px;left: 100px;'}
             `}
           >
-            <S.BoxerHead
-              css={css`
-                background-color: red;
-              `}
-            ></S.BoxerHead>
+            {is1Damage ? (
+              <Image
+                src={p1}
+                alt=""
+                css={css`
+                  width: 100px;
+                  height: 100px;
+                  border-radius: 50px;
+                  border: solid 10px black;
+                `}
+              />
+            ) : (
+              <S.BoxerHead
+                css={css`
+                  background-color: red;
+                `}
+              ></S.BoxerHead>
+            )}
             <S.BoxerBody />
           </div>
           <S.FlexBox>
@@ -287,11 +321,24 @@ const Game = () => {
               'transform: rotate(-70deg);position: relative;top: 80px;right: 100px;'}
             `}
           >
-            <S.BoxerHead
-              css={css`
-                background-color: blue;
-              `}
-            ></S.BoxerHead>
+            {is2Damage ? (
+              <Image
+                src={p2}
+                alt=""
+                css={css`
+                  width: 100px;
+                  height: 100px;
+                  border-radius: 50px;
+                  border: solid 10px black;
+                `}
+              />
+            ) : (
+              <S.BoxerHead
+                css={css`
+                  background-color: blue;
+                `}
+              ></S.BoxerHead>
+            )}
             <S.BoxerBody />
           </div>
           <S.FlexBox>

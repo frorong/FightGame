@@ -85,3 +85,10 @@ export const Kick = styled.div`
   transition: ease-in-out 0.5s;
   border: solid 10px black;
 `;
+
+export const NewHead = styled.div`
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  border: solid 10px black;
+`;
